@@ -7,13 +7,8 @@ pipeline {
 		slackSend "Docker Container Created"
         sh '''
 			echo "hello-world"
-       sh './build/build.sh'
-       katalon -runMode=console -projectPath="LEAP POC.prj" -reportFolder="Reports" -reportFileName="report" -retry=0 -testSuitePath="Test Suites/Google Search Suite" -browserType="Chrome"
-      sh './test/project/run_chrome.sh'
-      sh './test/project/run_firefox.sh'
-			chmod 777 ./ci/scripts/functional-test.sh
-			./ci/scripts/functional-test.sh
-		'''
+       			katalon -runMode=console -projectPath="LEAP POC.prj" -reportFolder="Reports" -reportFileName="report" -retry=0 -testSuitePath="Test Suites/Google Search Suite" -browserType="Chrome"
+     		'''
 		junit 'tests/*.xml'		
 		sh 'echo "bye-world"'
 		slackSend "Docker Container Destroyed"
